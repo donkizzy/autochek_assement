@@ -7,25 +7,27 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class CarRepository {
-
   CarRepository({required this.dio})
       : _dio = Dio(
-    BaseOptions(
-      connectTimeout: const Duration(seconds: 3),
-      receiveTimeout: const Duration(seconds: 3),
-    ),
-  );
+          BaseOptions(
+            connectTimeout: const Duration(seconds: 3),
+            receiveTimeout: const Duration(seconds: 3),
+          ),
+        );
 
   final Dio dio;
 
   final Dio _dio;
 
-
-  Future<Either<String, CarMakes>>  fetchCarPopularMakes() async {
+  Future<Either<String, CarMakes>> fetchCarPopularMakes() async {
     try {
-      final response = await _dio.get(ApiConfig.popularMakes,);
+      final response = await _dio.get(
+        ApiConfig.popularMakes,
+      );
       if (response.statusCode == 200 && response.data != null) {
-        final carMakes = CarMakes.fromJson(response.data!,);
+        final carMakes = CarMakes.fromJson(
+          response.data!,
+        );
         return Right(carMakes);
       } else {
         return Left(response.statusMessage ?? 'Error');
@@ -35,11 +37,15 @@ class CarRepository {
     }
   }
 
-  Future<Either<String, CarInventory>>  fetchCarInventory() async {
+  Future<Either<String, CarInventory>> fetchCarInventory() async {
     try {
-      final response = await _dio.get(ApiConfig.allCars,);
+      final response = await _dio.get(
+        ApiConfig.allCars,
+      );
       if (response.statusCode == 200 && response.data != null) {
-        final carMakes = CarInventory.fromJson(response.data!,);
+        final carMakes = CarInventory.fromJson(
+          response.data!,
+        );
         return Right(carMakes);
       } else {
         return Left(response.statusMessage ?? 'Error');
@@ -49,11 +55,15 @@ class CarRepository {
     }
   }
 
-  Future<Either<String, CarInventoryDetail>>  fetchCarInventoryDetail({required String carId}) async {
+  Future<Either<String, CarInventoryDetail>> fetchCarInventoryDetail({required String carId}) async {
     try {
-      final response = await _dio.get(ApiConfig.carDetail(carId: carId),);
+      final response = await _dio.get(
+        ApiConfig.carDetail(carId: carId),
+      );
       if (response.statusCode == 200 && response.data != null) {
-        final carMakes = CarInventoryDetail.fromJson(response.data!,);
+        final carMakes = CarInventoryDetail.fromJson(
+          response.data!,
+        );
         return Right(carMakes);
       } else {
         return Left(response.statusMessage ?? 'Error');
@@ -63,11 +73,15 @@ class CarRepository {
     }
   }
 
-  Future<Either<String, CarMedia>>  fetchCarMedia({required String carId}) async {
+  Future<Either<String, CarMedia>> fetchCarMedia({required String carId}) async {
     try {
-      final response = await _dio.get(ApiConfig.carMedia(carId: carId),);
+      final response = await _dio.get(
+        ApiConfig.carMedia(carId: carId),
+      );
       if (response.statusCode == 200 && response.data != null) {
-        final carMakes = CarMedia.fromJson(response.data!,);
+        final carMakes = CarMedia.fromJson(
+          response.data!,
+        );
         return Right(carMakes);
       } else {
         return Left(response.statusMessage ?? 'Error');
@@ -76,5 +90,4 @@ class CarRepository {
       return Left(e.toString());
     }
   }
-
 }

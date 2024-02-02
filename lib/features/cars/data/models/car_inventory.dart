@@ -8,14 +8,14 @@ class CarInventory {
   });
 
   factory CarInventory.fromJson(Map<String, dynamic> json) => CarInventory(
-    result: json["result"] == null ? [] : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),
-    pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
-  );
+        result: json["result"] == null ? [] : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),
+        pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "result": result == null ? [] : List<dynamic>.from(result!.map((x) => x.toJson())),
-    "pagination": pagination?.toJson(),
-  };
+        "result": result == null ? [] : List<dynamic>.from(result!.map((x) => x.toJson())),
+        "pagination": pagination?.toJson(),
+      };
 }
 
 class Pagination {
@@ -30,16 +30,16 @@ class Pagination {
   });
 
   factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-    total: json["total"],
-    currentPage: json["currentPage"],
-    pageSize: json["pageSize"],
-  );
+        total: json["total"],
+        currentPage: json["currentPage"],
+        pageSize: json["pageSize"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "total": total,
-    "currentPage": currentPage,
-    "pageSize": pageSize,
-  };
+        "total": total,
+        "currentPage": currentPage,
+        "pageSize": pageSize,
+      };
 }
 
 class Result {
@@ -100,62 +100,63 @@ class Result {
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    id: json["id"],
-    title: json["title"],
-    imageUrl: json["imageUrl"],
-    year: json["year"],
-    city: json["city"],
-    state: json["state"],
-    gradeScore: json["gradeScore"]?.toDouble(),
-    sellingCondition: json["sellingCondition"],
-    hasWarranty: json["hasWarranty"],
-    marketplacePrice: json["marketplacePrice"],
-    marketplaceOldPrice: json["marketplaceOldPrice"],
-    hasFinancing: json["hasFinancing"],
-    mileage: json["mileage"],
-    mileageUnit: json["mileageUnit"],
-    installment: json["installment"]?.toDouble(),
-    depositReceived: json["depositReceived"],
-    loanValue: json["loanValue"]?.toDouble(),
-    websiteUrl: json["websiteUrl"],
-    stats: json["stats"] == null ? null : Stats.fromJson(json["stats"]),
-    bodyTypeId: json["bodyTypeId"],
-    sold: json["sold"],
-    hasThreeDImage: json["hasThreeDImage"],
-    transmission: json["transmission"],
-    fuelType: json["fuelType"],
-    marketplaceVisibleDate: json["marketplaceVisibleDate"] == null ? null : DateTime.parse(json["marketplaceVisibleDate"]),
-    ccMeasurement: json["ccMeasurement"],
-  );
+        id: json["id"],
+        title: json["title"],
+        imageUrl: json["imageUrl"],
+        year: json["year"],
+        city: json["city"],
+        state: json["state"],
+        gradeScore: json["gradeScore"]?.toDouble(),
+        sellingCondition: json["sellingCondition"],
+        hasWarranty: json["hasWarranty"],
+        marketplacePrice: json["marketplacePrice"],
+        marketplaceOldPrice: json["marketplaceOldPrice"],
+        hasFinancing: json["hasFinancing"],
+        mileage: json["mileage"],
+        mileageUnit: json["mileageUnit"],
+        installment: json["installment"]?.toDouble(),
+        depositReceived: json["depositReceived"],
+        loanValue: json["loanValue"]?.toDouble(),
+        websiteUrl: json["websiteUrl"],
+        stats: json["stats"] == null ? null : Stats.fromJson(json["stats"]),
+        bodyTypeId: json["bodyTypeId"],
+        sold: json["sold"],
+        hasThreeDImage: json["hasThreeDImage"],
+        transmission: json["transmission"],
+        fuelType: json["fuelType"],
+        marketplaceVisibleDate:
+            json["marketplaceVisibleDate"] == null ? null : DateTime.parse(json["marketplaceVisibleDate"]),
+        ccMeasurement: json["ccMeasurement"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "title": title,
-    "imageUrl": imageUrl,
-    "year": year,
-    "city": city,
-    "state": state,
-    "gradeScore": gradeScore,
-    "sellingCondition": sellingCondition,
-    "hasWarranty": hasWarranty,
-    "marketplacePrice": marketplacePrice,
-    "marketplaceOldPrice": marketplaceOldPrice,
-    "hasFinancing": hasFinancing,
-    "mileage": mileage,
-    "mileageUnit": mileageUnit,
-    "installment": installment,
-    "depositReceived": depositReceived,
-    "loanValue": loanValue,
-    "websiteUrl": websiteUrl,
-    "stats": stats?.toJson(),
-    "bodyTypeId": bodyTypeId,
-    "sold": sold,
-    "hasThreeDImage": hasThreeDImage,
-    "transmission": transmission,
-    "fuelType": fuelType,
-    "marketplaceVisibleDate": marketplaceVisibleDate?.toIso8601String(),
-    "ccMeasurement": ccMeasurement,
-  };
+        "id": id,
+        "title": title,
+        "imageUrl": imageUrl,
+        "year": year,
+        "city": city,
+        "state": state,
+        "gradeScore": gradeScore,
+        "sellingCondition": sellingCondition,
+        "hasWarranty": hasWarranty,
+        "marketplacePrice": marketplacePrice,
+        "marketplaceOldPrice": marketplaceOldPrice,
+        "hasFinancing": hasFinancing,
+        "mileage": mileage,
+        "mileageUnit": mileageUnit,
+        "installment": installment,
+        "depositReceived": depositReceived,
+        "loanValue": loanValue,
+        "websiteUrl": websiteUrl,
+        "stats": stats?.toJson(),
+        "bodyTypeId": bodyTypeId,
+        "sold": sold,
+        "hasThreeDImage": hasThreeDImage,
+        "transmission": transmission,
+        "fuelType": fuelType,
+        "marketplaceVisibleDate": marketplaceVisibleDate?.toIso8601String(),
+        "ccMeasurement": ccMeasurement,
+      };
 }
 
 class Stats {
@@ -178,22 +179,22 @@ class Stats {
   });
 
   factory Stats.fromJson(Map<String, dynamic> json) => Stats(
-    webViewCount: json["webViewCount"],
-    webViewerCount: json["webViewerCount"],
-    interestCount: json["interestCount"],
-    testDriveCount: json["testDriveCount"],
-    appViewCount: json["appViewCount"],
-    appViewerCount: json["appViewerCount"],
-    processedLoanCount: json["processedLoanCount"],
-  );
+        webViewCount: json["webViewCount"],
+        webViewerCount: json["webViewerCount"],
+        interestCount: json["interestCount"],
+        testDriveCount: json["testDriveCount"],
+        appViewCount: json["appViewCount"],
+        appViewerCount: json["appViewerCount"],
+        processedLoanCount: json["processedLoanCount"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "webViewCount": webViewCount,
-    "webViewerCount": webViewerCount,
-    "interestCount": interestCount,
-    "testDriveCount": testDriveCount,
-    "appViewCount": appViewCount,
-    "appViewerCount": appViewerCount,
-    "processedLoanCount": processedLoanCount,
-  };
+        "webViewCount": webViewCount,
+        "webViewerCount": webViewerCount,
+        "interestCount": interestCount,
+        "testDriveCount": testDriveCount,
+        "appViewCount": appViewCount,
+        "appViewerCount": appViewerCount,
+        "processedLoanCount": processedLoanCount,
+      };
 }
