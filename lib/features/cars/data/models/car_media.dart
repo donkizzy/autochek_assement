@@ -1,8 +1,11 @@
-class CarMedia {
+import 'package:autochek_assessment/features/cars/data/models/car_make.dart';
+import 'package:equatable/equatable.dart';
+
+class CarMedia  extends Equatable{
   final List<CarMediaList>? carMediaList;
   final Pagination? pagination;
 
-  CarMedia({
+  const CarMedia({
     this.carMediaList,
     this.pagination,
   });
@@ -18,16 +21,19 @@ class CarMedia {
         "carMediaList": carMediaList == null ? [] : List<dynamic>.from(carMediaList!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [carMediaList, pagination];
 }
 
-class CarMediaList {
+class CarMediaList extends Equatable{
   final int? id;
   final String? name;
   final String? url;
   final String? createdAt;
   final String? type;
 
-  CarMediaList({
+  const CarMediaList({
     this.id,
     this.name,
     this.url,
@@ -50,28 +56,8 @@ class CarMediaList {
         "createdAt": createdAt,
         "type": type,
       };
+
+  @override
+  List<Object?> get props => [id, name, url, createdAt, type];
 }
 
-class Pagination {
-  final int? total;
-  final int? currentPage;
-  final int? pageSize;
-
-  Pagination({
-    this.total,
-    this.currentPage,
-    this.pageSize,
-  });
-
-  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-        total: json["total"],
-        currentPage: json["currentPage"],
-        pageSize: json["pageSize"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "total": total,
-        "currentPage": currentPage,
-        "pageSize": pageSize,
-      };
-}

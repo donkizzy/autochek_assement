@@ -1,4 +1,7 @@
-class CarInventory {
+import 'package:autochek_assessment/features/cars/data/models/car_make.dart';
+import 'package:equatable/equatable.dart';
+
+class CarInventory extends Equatable {
   final List<Result>? result;
   final Pagination? pagination;
 
@@ -16,33 +19,13 @@ class CarInventory {
         "result": result == null ? [] : List<dynamic>.from(result!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [result, pagination];
 }
 
-class Pagination {
-  final int? total;
-  final int? currentPage;
-  final int? pageSize;
 
-  Pagination({
-    this.total,
-    this.currentPage,
-    this.pageSize,
-  });
-
-  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-        total: json["total"],
-        currentPage: json["currentPage"],
-        pageSize: json["pageSize"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "total": total,
-        "currentPage": currentPage,
-        "pageSize": pageSize,
-      };
-}
-
-class Result {
+class Result extends Equatable {
   final String? id;
   final String? title;
   final String? imageUrl;
@@ -157,9 +140,39 @@ class Result {
         "marketplaceVisibleDate": marketplaceVisibleDate?.toIso8601String(),
         "ccMeasurement": ccMeasurement,
       };
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        imageUrl,
+        year,
+        city,
+        state,
+        gradeScore,
+        sellingCondition,
+        hasWarranty,
+        marketplacePrice,
+        marketplaceOldPrice,
+        hasFinancing,
+        mileage,
+        mileageUnit,
+        installment,
+        depositReceived,
+        loanValue,
+        websiteUrl,
+        stats,
+        bodyTypeId,
+        sold,
+        hasThreeDImage,
+        transmission,
+        fuelType,
+        marketplaceVisibleDate,
+        ccMeasurement,
+      ];
 }
 
-class Stats {
+class Stats extends Equatable{
   final int? webViewCount;
   final int? webViewerCount;
   final int? interestCount;
@@ -197,4 +210,15 @@ class Stats {
         "appViewerCount": appViewerCount,
         "processedLoanCount": processedLoanCount,
       };
+
+  @override
+  List<Object?> get props => [
+    webViewCount,
+    webViewerCount,
+    interestCount,
+    testDriveCount,
+    appViewCount,
+    appViewerCount,
+    processedLoanCount,
+  ];
 }

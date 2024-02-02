@@ -1,4 +1,6 @@
-class CarInventoryDetail {
+import 'package:equatable/equatable.dart';
+
+class CarInventoryDetail  extends Equatable{
   final List<dynamic>? features;
   final List<dynamic>? carFeatures;
   final List<dynamic>? modelFeatures;
@@ -43,7 +45,7 @@ class CarInventoryDetail {
   final FinancingSettings? financingSettings;
   final int? ccMeasurement;
 
-  CarInventoryDetail({
+  const CarInventoryDetail({
     this.features,
     this.carFeatures,
     this.modelFeatures,
@@ -181,14 +183,61 @@ class CarInventoryDetail {
         "financingSettings": financingSettings?.toJson(),
         "ccMeasurement": ccMeasurement,
       };
+
+  @override
+  List<Object?> get props => [
+        features,
+        carFeatures,
+        modelFeatures,
+        damageMedia,
+        id,
+        year,
+        insured,
+        mileage,
+        vin,
+        marketplacePrice,
+        marketplaceVisible,
+        marketplaceVisibleDate,
+        isFeatured,
+        imageUrl,
+        model,
+        state,
+        country,
+        ownerType,
+        transmission,
+        fuelType,
+        sellingCondition,
+        bodyType,
+        city,
+        marketplaceOldPrice,
+        createdAt,
+        updatedAt,
+        mileageUnit,
+        hasWarranty,
+        hasFinancing,
+        interiorColor,
+        exteriorColor,
+        engineType,
+        gradeScore,
+        installment,
+        depositReceived,
+        loanValue,
+        websiteUrl,
+        sold,
+        hasThreeDImage,
+        inspectorDetails,
+        carName,
+        financingSettings,
+        ccMeasurement,
+      ];
 }
 
-class BodyType {
+class BodyType  extends Equatable{
   final int? id;
   final String? name;
   final String? imageUrl;
 
-  BodyType({
+  const BodyType({
     this.id,
     this.name,
     this.imageUrl,
@@ -205,12 +254,15 @@ class BodyType {
         "name": name,
         "imageUrl": imageUrl,
       };
+
+  @override
+  List<Object?> get props => [id, name, imageUrl];
 }
 
-class FinancingSettings {
+class FinancingSettings extends Equatable{
   final LoanCalculator? loanCalculator;
 
-  FinancingSettings({
+  const FinancingSettings({
     this.loanCalculator,
   });
 
@@ -221,14 +273,17 @@ class FinancingSettings {
   Map<String, dynamic> toJson() => {
         "loanCalculator": loanCalculator?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [loanCalculator];
 }
 
-class LoanCalculator {
+class LoanCalculator extends Equatable {
   final double? loanPercentage;
   final Ranges? ranges;
   final DefaultValues? defaultValues;
 
-  LoanCalculator({
+  const LoanCalculator({
     this.loanPercentage,
     this.ranges,
     this.defaultValues,
@@ -245,14 +300,17 @@ class LoanCalculator {
         "ranges": ranges?.toJson(),
         "defaultValues": defaultValues?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [loanPercentage, ranges, defaultValues];
 }
 
-class DefaultValues {
+class DefaultValues extends Equatable{
   final double? interestRate;
   final double? downPayment;
   final int? tenure;
 
-  DefaultValues({
+  const DefaultValues({
     this.interestRate,
     this.downPayment,
     this.tenure,
@@ -269,16 +327,19 @@ class DefaultValues {
         "downPayment": downPayment,
         "tenure": tenure,
       };
+
+  @override
+  List<Object?> get props => [interestRate, downPayment, tenure];
 }
 
-class Ranges {
+class Ranges extends Equatable {
   final double? minInterestRate;
   final double? maxInterestRate;
   final double? minDownPayment;
   final double? maxDownPayment;
   final int? tenure;
 
-  Ranges({
+  const Ranges({
     this.minInterestRate,
     this.maxInterestRate,
     this.minDownPayment,
@@ -301,15 +362,18 @@ class Ranges {
         "maxDownPayment": maxDownPayment,
         "tenure": tenure,
       };
+
+  @override
+  List<Object?> get props => [minInterestRate, maxInterestRate, minDownPayment, maxDownPayment, tenure];
 }
 
-class InspectorDetails {
+class InspectorDetails extends Equatable {
   final List<InspectedMake>? inspectedMakes;
   final String? inspectorFullName;
   final int? totalInspection;
   final String? profileImageUrl;
 
-  InspectorDetails({
+  const InspectorDetails({
     this.inspectedMakes,
     this.inspectorFullName,
     this.totalInspection,
@@ -331,14 +395,17 @@ class InspectorDetails {
         "totalInspection": totalInspection,
         "profileImageUrl": profileImageUrl,
       };
+
+  @override
+  List<Object?> get props => [inspectedMakes, inspectorFullName, totalInspection, profileImageUrl];
 }
 
-class InspectedMake {
+class InspectedMake  extends Equatable{
   final int? count;
   final String? name;
   final String? imageUrl;
 
-  InspectedMake({
+  const InspectedMake({
     this.count,
     this.name,
     this.imageUrl,
@@ -355,9 +422,12 @@ class InspectedMake {
         "name": name,
         "imageUrl": imageUrl,
       };
+
+  @override
+  List<Object?> get props => [count, name, imageUrl];
 }
 
-class Model {
+class Model extends Equatable {
   final List<dynamic>? modelFeatures;
   final int? id;
   final String? name;
@@ -366,7 +436,7 @@ class Model {
   final BodyType? make;
   final bool? popular;
 
-  Model({
+  const Model({
     this.modelFeatures,
     this.id,
     this.name,
@@ -395,4 +465,7 @@ class Model {
         "make": make?.toJson(),
         "popular": popular,
       };
+
+  @override
+  List<Object?> get props => [modelFeatures, id, name, imageUrl, wheelType, make, popular];
 }
