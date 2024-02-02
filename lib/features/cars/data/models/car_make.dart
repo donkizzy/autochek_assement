@@ -1,8 +1,10 @@
-class CarMakes {
+import 'package:equatable/equatable.dart';
+
+class CarMakes extends Equatable {
   final List<MakeList>? makeList;
   final Pagination? pagination;
 
-  CarMakes({
+  const CarMakes({
     this.makeList,
     this.pagination,
   });
@@ -17,14 +19,17 @@ class CarMakes {
         "makeList": makeList == null ? [] : List<dynamic>.from(makeList!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };
+
+  @override
+  List<Object?> get props => [makeList, pagination];
 }
 
-class MakeList {
+class MakeList extends Equatable{
   final int? id;
   final String? name;
   final String? imageUrl;
 
-  MakeList({
+  const MakeList({
     this.id,
     this.name,
     this.imageUrl,
@@ -41,14 +46,17 @@ class MakeList {
         "name": name,
         "imageUrl": imageUrl,
       };
+
+  @override
+  List<Object?> get props => [id, name, imageUrl];
 }
 
-class Pagination {
+class Pagination extends Equatable{
   final int? total;
   final int? currentPage;
   final int? pageSize;
 
-  Pagination({
+  const Pagination({
     this.total,
     this.currentPage,
     this.pageSize,
@@ -65,4 +73,7 @@ class Pagination {
         "currentPage": currentPage,
         "pageSize": pageSize,
       };
+
+  @override
+  List<Object?> get props => [total, currentPage, pageSize];
 }
