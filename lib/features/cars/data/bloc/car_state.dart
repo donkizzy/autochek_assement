@@ -15,7 +15,7 @@ class FetchCarMakesLoading extends CarState {
 }
 
 class FetchCarMakesSuccess extends CarState {
-  final List<CarMakes> carMakes;
+  final CarMakes carMakes;
 
   const FetchCarMakesSuccess({required this.carMakes});
   @override
@@ -31,14 +31,13 @@ class FetchCarMakesError extends CarState {
   List<Object> get props => [error];
 }
 
-
 class FetchCarInventoryLoading extends CarState {
   @override
   List<Object> get props => [];
 }
 
 class FetchCarInventorySuccess extends CarState {
-  final List<CarInventory> carInventory;
+  final CarInventory carInventory;
 
   const FetchCarInventorySuccess({required this.carInventory});
   @override
@@ -52,7 +51,6 @@ class FetchCarInventoryError extends CarState {
   @override
   List<Object> get props => [error];
 }
-
 
 class FetchCarInventoryDetailsLoading extends CarState {
   @override
@@ -76,7 +74,6 @@ class FetchCarInventoryDetailsError extends CarState {
   @override
   List<Object> get props => [error];
 }
-
 
 class FetchCarMediaLoading extends CarState {
   @override
