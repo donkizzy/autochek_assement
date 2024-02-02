@@ -39,9 +39,7 @@ class CarRepository {
 
   Future<Either<String, CarInventory>> fetchCarInventory() async {
     try {
-      final response = await _dio.get(
-        ApiConfig.allCars,
-      );
+      final response = await _dio.get(ApiConfig.allCars,);
       if (response.statusCode == 200 && response.data != null) {
         final carMakes = CarInventory.fromJson(
           response.data!,
