@@ -2,7 +2,7 @@ import 'package:autochek_assessment/features/cars/data/models/car_make.dart';
 import 'package:equatable/equatable.dart';
 
 class CarInventory extends Equatable {
-  final List<Result>? result;
+  final List<CarInventoryResult>? result;
   final Pagination? pagination;
 
   const CarInventory({
@@ -11,7 +11,9 @@ class CarInventory extends Equatable {
   });
 
   factory CarInventory.fromJson(Map<String, dynamic> json) => CarInventory(
-        result: json["result"] == null ? [] : List<Result>.from(json["result"]!.map((x) => Result.fromJson(x))),
+        result: json["result"] == null
+            ? []
+            : List<CarInventoryResult>.from(json["result"]!.map((x) => CarInventoryResult.fromJson(x))),
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
       );
 
@@ -25,7 +27,7 @@ class CarInventory extends Equatable {
   List<Object?> get props => [result, pagination];
 }
 
-class Result extends Equatable {
+class CarInventoryResult extends Equatable {
   final String? id;
   final String? title;
   final String? imageUrl;
@@ -53,7 +55,7 @@ class Result extends Equatable {
   final DateTime? marketplaceVisibleDate;
   final int? ccMeasurement;
 
-  const Result({
+  const CarInventoryResult({
     this.id,
     this.title,
     this.imageUrl,
@@ -82,7 +84,7 @@ class Result extends Equatable {
     this.ccMeasurement,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory CarInventoryResult.fromJson(Map<String, dynamic> json) => CarInventoryResult(
         id: json["id"],
         title: json["title"],
         imageUrl: json["imageUrl"],

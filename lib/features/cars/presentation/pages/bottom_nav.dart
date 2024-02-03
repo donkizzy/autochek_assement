@@ -26,7 +26,7 @@ class _BottomNavState extends State<BottomNav> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         elevation: 1.0,
-        backgroundColor: Colors.black,
+        backgroundColor: codGray,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(500)),
         child: const Icon(
           Icons.shopping_bag,
