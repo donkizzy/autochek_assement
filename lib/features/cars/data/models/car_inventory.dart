@@ -5,7 +5,7 @@ class CarInventory extends Equatable {
   final List<Result>? result;
   final Pagination? pagination;
 
-  CarInventory({
+  const CarInventory({
     this.result,
     this.pagination,
   });
@@ -53,7 +53,7 @@ class Result extends Equatable {
   final DateTime? marketplaceVisibleDate;
   final int? ccMeasurement;
 
-  Result({
+  const Result({
     this.id,
     this.title,
     this.imageUrl,
@@ -181,7 +181,7 @@ class Stats extends Equatable{
   final int? appViewerCount;
   final int? processedLoanCount;
 
-  Stats({
+  const Stats({
     this.webViewCount,
     this.webViewerCount,
     this.interestCount,
