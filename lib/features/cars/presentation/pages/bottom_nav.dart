@@ -1,4 +1,5 @@
 import 'package:autochek_assessment/features/cars/presentation/pages/home.dart';
+import 'package:autochek_assessment/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
@@ -33,8 +34,8 @@ class _BottomNavState extends State<BottomNav> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey.withOpacity(0.5),
+        selectedItemColor: mineShaftBlack,
+        unselectedItemColor: armadilloBrown.withOpacity(0.5),
         onTap: onTabChanged,
         currentIndex: selectedIndex,
         elevation: 1.0,
