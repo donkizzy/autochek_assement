@@ -14,7 +14,7 @@ import 'car_repository_test.mocks.dart';
 
 @GenerateMocks([Dio])
 void main() {
- late  CarRepository carRepository;
+  late CarRepository carRepository;
   late MockDio mockDio;
 
   setUp(() {
@@ -23,95 +23,88 @@ void main() {
   });
 
   group('fetchCarPopularMakes', () {
-
     test('returns CarMakes when successful', () async {
-
       when(mockDio.get(ApiConfig.popularMakes))
           .thenAnswer((_) async => Response(data: carMake, statusCode: 200, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarPopularMakes();
       result.fold(
-            (l) => null,
-            (r) {
+        (l) => null,
+        (r) {
           expect(r, isA<CarMakes>());
           expect(r, equals(CarMakes.fromJson(carMake)));
         },
       );
-
     });
 
     test('returns error message when fails', () async {
-
       when(mockDio.get(ApiConfig.popularMakes))
           .thenAnswer((_) async => Response(statusCode: 400, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarPopularMakes();
       result.fold(
-            (l) {
+        (l) {
           expect(l, isA<String>());
-        },(r) => null,
+        },
+        (r) => null,
       );
     });
   });
 
   group('fetchCarInventory', () {
     test('returns CarInventory when successful', () async {
-
       when(mockDio.get(ApiConfig.allCars))
           .thenAnswer((_) async => Response(data: carInventory, statusCode: 200, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarInventory();
       result.fold(
-            (l) => null,
-            (r) {
+        (l) => null,
+        (r) {
           expect(r, isA<CarInventory>());
           expect(r, equals(CarInventory.fromJson(carInventory)));
         },
       );
-
     });
 
     test('returns error message when fails', () async {
-
       when(mockDio.get(ApiConfig.allCars))
           .thenAnswer((_) async => Response(data: 'Error', statusCode: 400, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarInventory();
       result.fold(
-            (l) {
+        (l) {
           expect(l, isA<String>());
-        },(r) => null,
+        },
+        (r) => null,
       );
     });
   });
 
   group('fetchCarInventoryDetail', () {
     test('returns CarInventoryDetail when successful', () async {
-
-      when(mockDio.get(ApiConfig.carDetail(carId: 'M8JMxVUxJ')))
-          .thenAnswer((_) async => Response(data: carInventoryDetail, statusCode: 200, requestOptions: RequestOptions()));
+      when(mockDio.get(ApiConfig.carDetail(carId: 'M8JMxVUxJ'))).thenAnswer(
+          (_) async => Response(data: carInventoryDetail, statusCode: 200, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarInventoryDetail(carId: 'M8JMxVUxJ');
       result.fold(
-            (l) => null,
-            (r) {
+        (l) => null,
+        (r) {
           expect(r, isA<CarInventoryDetail>());
           expect(r, equals(CarInventoryDetail.fromJson(carInventoryDetail)));
         },
       );
-
     });
 
     test('returns error message when fails', () async {
-
       when(mockDio.get(ApiConfig.carDetail(carId: 'M8JMxVUxJ')))
           .thenAnswer((_) async => Response(data: 'Error', statusCode: 400, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarInventoryDetail(carId: 'M8JMxVUxJ');
       result.fold(
-            (l) {
+        (l) {
           expect(l, isA<String>());
-        },(r) => null,
+        },
+        (r) => null,
       );
     });
   });
@@ -123,28 +116,25 @@ void main() {
 
       final result = await carRepository.fetchCarMedia(carId: 'M8JMxVUxJ');
       result.fold(
-            (l) => null,
-            (r) {
+        (l) => null,
+        (r) {
           expect(r, isA<CarMedia>());
           expect(r, equals(CarInventoryDetail.fromJson(carInventoryDetail)));
         },
       );
-
     });
 
     test('returns error message when fails', () async {
-
       when(mockDio.get(ApiConfig.carDetail(carId: 'M8JMxVUxJ')))
           .thenAnswer((_) async => Response(data: 'Error', statusCode: 400, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarMedia(carId: 'M8JMxVUxJ');
       result.fold(
-            (l) {
+        (l) {
           expect(l, isA<String>());
-        },(r) => null,
+        },
+        (r) => null,
       );
     });
-
   });
-
 }

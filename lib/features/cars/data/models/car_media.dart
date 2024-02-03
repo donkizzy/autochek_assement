@@ -1,7 +1,7 @@
 import 'package:autochek_assessment/features/cars/data/models/car_make.dart';
 import 'package:equatable/equatable.dart';
 
-class CarMedia  extends Equatable{
+class CarMedia extends Equatable {
   final List<CarMediaList>? carMediaList;
   final Pagination? pagination;
 
@@ -17,7 +17,8 @@ class CarMedia  extends Equatable{
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "carMediaList": carMediaList == null ? [] : List<dynamic>.from(carMediaList!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };
@@ -26,7 +27,7 @@ class CarMedia  extends Equatable{
   List<Object?> get props => [carMediaList, pagination];
 }
 
-class CarMediaList extends Equatable{
+class CarMediaList extends Equatable {
   final int? id;
   final String? name;
   final String? url;
@@ -60,4 +61,3 @@ class CarMediaList extends Equatable{
   @override
   List<Object?> get props => [id, name, url, createdAt, type];
 }
-

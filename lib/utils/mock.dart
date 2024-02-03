@@ -1,26 +1,9 @@
-
 final carMake = {
   "makeList": [
-    {
-      "id": 9,
-      "name": "Audi",
-      "imageUrl": "https://storage.googleapis.com/img.autochek.africa/marketplace/audi.png"
-    },
-    {
-      "id": 13,
-      "name": "BMW",
-      "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/bmw.svg"
-    },
-    {
-      "id": 45,
-      "name": "Honda",
-      "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/honda.svg"
-    },
-    {
-      "id": 47,
-      "name": "Hyundai",
-      "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/hyundai.svg"
-    },
+    {"id": 9, "name": "Audi", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/marketplace/audi.png"},
+    {"id": 13, "name": "BMW", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/bmw.svg"},
+    {"id": 45, "name": "Honda", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/honda.svg"},
+    {"id": 47, "name": "Hyundai", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/hyundai.svg"},
     {
       "id": 51,
       "name": "Jaguar",
@@ -31,21 +14,13 @@ final carMake = {
       "name": "Land Rover",
       "imageUrl": "https://storage.googleapis.com/img.autochek.africa/marketplace/land-rover.png"
     },
-    {
-      "id": 61,
-      "name": "Lexus",
-      "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/lexus.svg"
-    },
+    {"id": 61, "name": "Lexus", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/lexus.svg"},
     {
       "id": 70,
       "name": "Mercedes-Benz",
       "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/benz.svg"
     },
-    {
-      "id": 76,
-      "name": "Nissan",
-      "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/nissan.svg"
-    },
+    {"id": 76, "name": "Nissan", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/nissan.svg"},
     {
       "id": 106,
       "name": "Toyota",
@@ -57,11 +32,7 @@ final carMake = {
       "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/volkswagen.svg"
     }
   ],
-  "pagination": {
-    "total": 11,
-    "currentPage": 1,
-    "pageSize": 20
-  }
+  "pagination": {"total": 11, "currentPage": 1, "pageSize": 20}
 };
 
 final carInventory = {
@@ -139,26 +110,14 @@ final carInventory = {
       "ccMeasurement": 8373
     },
   ],
-  "pagination": {
-    "total": 1604,
-    "currentPage": 1,
-    "pageSize": 24
-  }
+  "pagination": {"total": 1604, "currentPage": 1, "pageSize": 24}
 };
 
 final carInventoryDetail = {
-  "features": [
-
-  ],
-  "carFeatures": [
-
-  ],
-  "modelFeatures": [
-
-  ],
-  "damageMedia": [
-
-  ],
+  "features": [],
+  "carFeatures": [],
+  "modelFeatures": [],
+  "damageMedia": [],
   "id": "M8JMxVUxJ",
   "year": 2011,
   "insured": false,
@@ -170,9 +129,7 @@ final carInventoryDetail = {
   "isFeatured": false,
   "imageUrl": "https://media.autochek.africa/file/nLnBwRcB.webp",
   "model": {
-    "modelFeatures": [
-
-    ],
+    "modelFeatures": [],
     "id": 702,
     "name": "Pilot",
     "imageUrl": "",
@@ -219,11 +176,7 @@ final carInventoryDetail = {
         "name": "Toyota",
         "imageUrl": "https://storage.googleapis.com/img.autochek.africa/marketplace/toyota.png"
       },
-      {
-        "count": 94,
-        "name": "Lexus",
-        "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/lexus.svg"
-      },
+      {"count": 94, "name": "Lexus", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/brands/lexus.svg"},
       {
         "count": 50,
         "name": "Mercedes-Benz",
@@ -232,7 +185,8 @@ final carInventoryDetail = {
     ],
     "inspectorFullName": "Nwudo SAMUEL Chibueze",
     "totalInspection": 613,
-    "profileImageUrl": "https://storage.googleapis.com/img.autochek.africa/deb046e5-dadd-4d6e-98e6-efba35971487-IMG_20211029_220232_573.jpg"
+    "profileImageUrl":
+        "https://storage.googleapis.com/img.autochek.africa/deb046e5-dadd-4d6e-98e6-efba35971487-IMG_20211029_220232_573.jpg"
   },
   "carName": "Honda Pilot  - 2011",
   "financingSettings": {
@@ -272,9 +226,5 @@ final carMedia = {
       "type": "image"
     },
   ],
-  "pagination": {
-    "total": 16,
-    "currentPage": 1,
-    "pageSize": 100
-  }
+  "pagination": {"total": 16, "currentPage": 1, "pageSize": 100}
 };

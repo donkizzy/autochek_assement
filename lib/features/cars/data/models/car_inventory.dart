@@ -15,7 +15,8 @@ class CarInventory extends Equatable {
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "result": result == null ? [] : List<dynamic>.from(result!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };
@@ -23,7 +24,6 @@ class CarInventory extends Equatable {
   @override
   List<Object?> get props => [result, pagination];
 }
-
 
 class Result extends Equatable {
   final String? id;
@@ -172,7 +172,7 @@ class Result extends Equatable {
       ];
 }
 
-class Stats extends Equatable{
+class Stats extends Equatable {
   final int? webViewCount;
   final int? webViewerCount;
   final int? interestCount;
@@ -213,12 +213,12 @@ class Stats extends Equatable{
 
   @override
   List<Object?> get props => [
-    webViewCount,
-    webViewerCount,
-    interestCount,
-    testDriveCount,
-    appViewCount,
-    appViewerCount,
-    processedLoanCount,
-  ];
+        webViewCount,
+        webViewerCount,
+        interestCount,
+        testDriveCount,
+        appViewCount,
+        appViewerCount,
+        processedLoanCount,
+      ];
 }

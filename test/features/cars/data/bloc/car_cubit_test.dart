@@ -13,7 +13,6 @@ import 'package:autochek_assessment/features/cars/data/models/car_make.dart';
 
 import 'car_cubit_test.mocks.dart';
 
-
 @GenerateMocks([CarRepository])
 void main() {
   late CarCubit carCubit;
@@ -67,11 +66,11 @@ void main() {
       'fetchCarInventory emits [FetchCarInventoryLoading, FetchCarInventorySuccess] when successful',
       build: () => carCubit,
       setUp: () {
-        when(mockCarRepository.fetchCarInventory())
-            .thenAnswer((_) async => Right(CarInventory.fromJson(carInventory)));
+        when(mockCarRepository.fetchCarInventory()).thenAnswer((_) async => Right(CarInventory.fromJson(carInventory)));
       },
       act: (cubit) => cubit.fetchCarInventory(),
-      expect: () => <CarState>[
+      expect: () =>
+      <CarState>[
         FetchCarInventoryLoading(),
         FetchCarInventorySuccess(carInventory: CarInventory.fromJson(carInventory)),
       ],
@@ -101,7 +100,8 @@ void main() {
             .thenAnswer((_) async => Right(CarInventoryDetail.fromJson(carInventoryDetail)));
       },
       act: (cubit) => cubit.fetchCarInventoryDetail(carId: 'M8JMxVUxJ'),
-      expect: () => <CarState>[
+      expect: () =>
+      <CarState>[
         FetchCarInventoryDetailsLoading(),
         FetchCarInventoryDetailsSuccess(carInventoryDetail: CarInventoryDetail.fromJson(carInventoryDetail)),
       ],

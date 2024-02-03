@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class CarInventoryDetail  extends Equatable{
+class CarInventoryDetail extends Equatable {
   final List<dynamic>? features;
   final List<dynamic>? carFeatures;
   final List<dynamic>? modelFeatures;
@@ -138,7 +138,8 @@ class CarInventoryDetail  extends Equatable{
         ccMeasurement: json["ccMeasurement"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "features": features == null ? [] : List<dynamic>.from(features!.map((x) => x)),
         "carFeatures": carFeatures == null ? [] : List<dynamic>.from(carFeatures!.map((x) => x)),
         "modelFeatures": modelFeatures == null ? [] : List<dynamic>.from(modelFeatures!.map((x) => x)),
@@ -232,7 +233,7 @@ class CarInventoryDetail  extends Equatable{
       ];
 }
 
-class BodyType  extends Equatable{
+class BodyType extends Equatable {
   final int? id;
   final String? name;
   final String? imageUrl;
@@ -259,7 +260,7 @@ class BodyType  extends Equatable{
   List<Object?> get props => [id, name, imageUrl];
 }
 
-class FinancingSettings extends Equatable{
+class FinancingSettings extends Equatable {
   final LoanCalculator? loanCalculator;
 
   const FinancingSettings({
@@ -290,7 +291,7 @@ class LoanCalculator extends Equatable {
   });
 
   factory LoanCalculator.fromJson(Map<String, dynamic> json) => LoanCalculator(
-        loanPercentage: json["loanPercentage"]?.toDouble(),
+    loanPercentage: json["loanPercentage"]?.toDouble(),
         ranges: json["ranges"] == null ? null : Ranges.fromJson(json["ranges"]),
         defaultValues: json["defaultValues"] == null ? null : DefaultValues.fromJson(json["defaultValues"]),
       );
@@ -305,7 +306,7 @@ class LoanCalculator extends Equatable {
   List<Object?> get props => [loanPercentage, ranges, defaultValues];
 }
 
-class DefaultValues extends Equatable{
+class DefaultValues extends Equatable {
   final double? interestRate;
   final double? downPayment;
   final int? tenure;
@@ -400,7 +401,7 @@ class InspectorDetails extends Equatable {
   List<Object?> get props => [inspectedMakes, inspectorFullName, totalInspection, profileImageUrl];
 }
 
-class InspectedMake  extends Equatable{
+class InspectedMake extends Equatable {
   final int? count;
   final String? name;
   final String? imageUrl;
@@ -456,7 +457,8 @@ class Model extends Equatable {
         popular: json["popular"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "modelFeatures": modelFeatures == null ? [] : List<dynamic>.from(modelFeatures!.map((x) => x)),
         "id": id,
         "name": name,

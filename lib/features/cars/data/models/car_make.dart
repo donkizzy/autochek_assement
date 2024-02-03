@@ -15,7 +15,8 @@ class CarMakes extends Equatable {
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         "makeList": makeList == null ? [] : List<dynamic>.from(makeList!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };
@@ -24,7 +25,7 @@ class CarMakes extends Equatable {
   List<Object?> get props => [makeList, pagination];
 }
 
-class MakeList extends Equatable{
+class MakeList extends Equatable {
   final int? id;
   final String? name;
   final String? imageUrl;
@@ -51,7 +52,7 @@ class MakeList extends Equatable{
   List<Object?> get props => [id, name, imageUrl];
 }
 
-class Pagination extends Equatable{
+class Pagination extends Equatable {
   final int? total;
   final int? currentPage;
   final int? pageSize;
