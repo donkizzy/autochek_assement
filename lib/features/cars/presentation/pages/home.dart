@@ -1,9 +1,8 @@
 import 'package:autochek_assessment/features/cars/data/bloc/car_cubit.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/car_make_item.dart';
-import 'package:autochek_assessment/features/cars/presentation/widgets/car_makes_loader.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/error_widget.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/inventory_item.dart';
-import 'package:autochek_assessment/features/cars/presentation/widgets/lazy_load_scroll_view.dart';
+import 'package:autochek_assessment/features/cars/presentation/widgets/loading_widget.dart';
 import 'package:autochek_assessment/utils/app_colors.dart';
 import 'package:autochek_assessment/utils/utilities.dart';
 import 'package:flutter/material.dart';
@@ -130,7 +129,7 @@ class _HomeState extends State<Home> {
                   },
                   builder: (context, state) {
                     if (state is FetchCarMakesLoading) {
-                      return const CarMakeLoader();
+                      return const LoadingWidget();
                     }
                     if (state is FetchCarMakesSuccess) {
                       return ListView.separated(
@@ -174,28 +173,23 @@ class _HomeState extends State<Home> {
           },
           builder: (context, state) {
             if (state is FetchCarInventoryLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const LoadingWidget();
             }
             if (state is FetchCarInventorySuccess) {
-              return LazyLoadScrollView(
-                onEndOfPage: () {
-                  carCubit.fetchCarInventory();
+              return ListView.separated(
+                shrinkWrap: true,
+                itemCount: state.carInventory.result?.length ?? 0,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext context, int index) {
+                  return InventoryItem(
+                    carInventory: state.carInventory.result?[index],
+                  );
                 },
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemCount: state.carInventory.result?.length ?? 0,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return InventoryItem(
-                      carInventory: state.carInventory.result?[index],
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return const SizedBox(
-                      height: 20,
-                    );
-                  },
-                ),
+                separatorBuilder: (BuildContext context, int index) {
+                  return const SizedBox(
+                    height: 20,
+                  );
+                },
               );
             }
             if (state is FetchCarInventoryError) {

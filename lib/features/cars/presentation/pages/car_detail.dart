@@ -3,8 +3,10 @@ import 'package:autochek_assessment/features/cars/data/models/car_inventory_deta
 import 'package:autochek_assessment/features/cars/presentation/widgets/description_item.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/error_widget.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/image_thumbnail_item.dart';
+import 'package:autochek_assessment/features/cars/presentation/widgets/loading_widget.dart';
 import 'package:autochek_assessment/utils/app_colors.dart';
 import 'package:autochek_assessment/utils/utilities.dart';
+import 'package:better_player/better_player.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +27,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
 
   @override
   void initState() {
+    // carCubit.fetchCarInventoryDetail(carId: 'R1nVTV4Mj');
     carCubit.fetchCarInventoryDetail(carId: widget.carId);
     super.initState();
   }
@@ -160,9 +163,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
         },
         builder: (context, state) {
           if (state is FetchCarInventoryDetailsLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const LoadingWidget();
           }
           if (state is FetchCarInventoryDetailsSuccess) {
             return ListView(
@@ -207,9 +208,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                                       },
                                       builder: (context, state) {
                                         if (state is FetchCarMediaLoading) {
-                                          return const Center(
-                                            child: CircularProgressIndicator(),
-                                          );
+                                          return const LoadingWidget();
                                         }
                                         if (state is FetchCarMediaSuccess) {
                                           return ListView.separated(
@@ -218,12 +217,26 @@ class _CarDetailPageState extends State<CarDetailPage> {
                                             shrinkWrap: true,
                                             padding: EdgeInsets.zero,
                                             itemBuilder: (BuildContext context, int index) {
-                                              return ImageThumbNaiItem(
-                                                index: index,
-                                                url: state.carMedia.carMediaList?[index].url ?? '',
-                                                onChanged: (index) {
-                                                  selectedImageUrl.value =
-                                                      state.carMedia.carMediaList?[index].url ?? '';
+                                              var mediaUrl = state.carMedia.carMediaList?[index].url ?? '';
+                                              return ValueListenableBuilder(
+                                                valueListenable: selectedImageUrl,
+                                                builder: (BuildContext context, String value, Widget? child) {
+                                                  return Container(
+                                                    decoration: BoxDecoration(
+                                                        color: snuffPurple,
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        border: Border.all(
+                                                            color: mediaUrl.toLowerCase() == value.toLowerCase()
+                                                                ? codGray
+                                                                : Colors.transparent,
+                                                            width: 1)),
+                                                    child: ImageThumbNaiItem(
+                                                      url: mediaUrl,
+                                                      onChanged: () {
+                                                        selectedImageUrl.value = mediaUrl;
+                                                      },
+                                                    ),
+                                                  );
                                                 },
                                               );
                                             },
@@ -305,11 +318,22 @@ class _CarDetailPageState extends State<CarDetailPage> {
                               child: ValueListenableBuilder(
                                 valueListenable: selectedImageUrl,
                                 builder: (BuildContext context, String? value, Widget? child) {
-                                  return CachedNetworkImage(
-                                    imageUrl: value ?? '',
-                                    placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                                  );
+                                  return !(value ?? '').endsWith('.mp4')
+                                      ? CachedNetworkImage(
+                                          imageUrl: value ?? '',
+                                          placeholder: (context, url) =>
+                                              const Center(child: CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                                        )
+                                      : AspectRatio(
+                                          aspectRatio: 16 / 9,
+                                          child: BetterPlayer.network(
+                                            value ?? '',
+                                            betterPlayerConfiguration: const BetterPlayerConfiguration(
+                                              aspectRatio: 16 / 9,
+                                            ),
+                                          ),
+                                        );
                                 },
                               ),
                             ),
@@ -335,7 +359,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
         listener: (BuildContext context, CarState state) {
           if (state is FetchCarInventoryDetailsSuccess) {
             carInventoryDetail.value = state.carInventoryDetail;
-            carCubit.fetchCarMedia(carId: widget.carId);
+            carCubit.fetchCarMedia(carId: 'R1nVTV4Mj');
             selectedImageUrl.value = state.carInventoryDetail.imageUrl ?? '';
           }
         },
