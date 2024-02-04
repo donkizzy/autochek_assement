@@ -15,8 +15,7 @@ class CarMakes extends Equatable {
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "makeList": makeList == null ? [] : List<dynamic>.from(makeList!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };

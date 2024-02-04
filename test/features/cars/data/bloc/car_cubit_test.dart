@@ -69,8 +69,7 @@ void main() {
         when(mockCarRepository.fetchCarInventory()).thenAnswer((_) async => Right(CarInventory.fromJson(carInventory)));
       },
       act: (cubit) => cubit.fetchCarInventory(),
-      expect: () =>
-      <CarState>[
+      expect: () => <CarState>[
         FetchCarInventoryLoading(),
         FetchCarInventorySuccess(carInventory: CarInventory.fromJson(carInventory)),
       ],
@@ -100,8 +99,7 @@ void main() {
             .thenAnswer((_) async => Right(CarInventoryDetail.fromJson(carInventoryDetail)));
       },
       act: (cubit) => cubit.fetchCarInventoryDetail(carId: 'M8JMxVUxJ'),
-      expect: () =>
-      <CarState>[
+      expect: () => <CarState>[
         FetchCarInventoryDetailsLoading(),
         FetchCarInventoryDetailsSuccess(carInventoryDetail: CarInventoryDetail.fromJson(carInventoryDetail)),
       ],

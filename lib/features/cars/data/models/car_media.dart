@@ -17,8 +17,7 @@ class CarMedia extends Equatable {
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "carMediaList": carMediaList == null ? [] : List<dynamic>.from(carMediaList!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };

@@ -17,8 +17,7 @@ class CarInventory extends Equatable {
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "result": result == null ? [] : List<dynamic>.from(result!.map((x) => x.toJson())),
         "pagination": pagination?.toJson(),
       };
