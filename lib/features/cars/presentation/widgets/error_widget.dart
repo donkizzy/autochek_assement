@@ -1,3 +1,4 @@
+import 'package:autochek_assessment/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ErrorState extends StatelessWidget {
@@ -9,17 +10,25 @@ class ErrorState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          Center(child: Text(errorMessage)),
+          Text(
+            errorMessage,
+            overflow: TextOverflow.ellipsis,
+          ),
           const SizedBox(
             height: 10,
           ),
           MaterialButton(
             onPressed: retry,
-            child: const Text('Retry'),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            color: codGray,
+            child: Text(
+              'Retry',
+              style: TextStyle(color: goldenRodYellow),
+            ),
           )
         ],
       ),

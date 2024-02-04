@@ -147,11 +147,7 @@ final carInventoryDetail = {
   "transmission": "automatic",
   "fuelType": "petrol",
   "sellingCondition": "foreign",
-  "bodyType": {
-    "id": 3,
-    "name": "SUV",
-    "imageUrl": "https://storage.googleapis.com/img.autochek.africa/svg/Suv.svg"
-  },
+  "bodyType": {"id": 3, "name": "SUV", "imageUrl": "https://storage.googleapis.com/img.autochek.africa/svg/Suv.svg"},
   "city": "Amuwo",
   "marketplaceOldPrice": 6465000,
   "createdAt": "Mon Feb 20 2023 04:14:51 GMT+0000 (Coordinated Universal Time)",
@@ -199,11 +195,7 @@ final carInventoryDetail = {
         "maxDownPayment": 0.5,
         "tenure": 24
       },
-      "defaultValues": {
-        "interestRate": 0.2800000011920929,
-        "downPayment": 0.30000001192092896,
-        "tenure": 24
-      }
+      "defaultValues": {"interestRate": 0.2800000011920929, "downPayment": 0.30000001192092896, "tenure": 24}
     }
   },
   "ccMeasurement": 3500
