@@ -10,7 +10,7 @@ class CarInventoryDetail extends Equatable {
   final bool? insured;
   final int? mileage;
   final String? vin;
-  final int? marketplacePrice;
+  final num? marketplacePrice;
   final bool? marketplaceVisible;
   final String? marketplaceVisibleDate;
   final bool? isFeatured;
@@ -24,7 +24,7 @@ class CarInventoryDetail extends Equatable {
   final String? sellingCondition;
   final BodyType? bodyType;
   final String? city;
-  final int? marketplaceOldPrice;
+  final num? marketplaceOldPrice;
   final String? createdAt;
   final String? updatedAt;
   final String? mileageUnit;
@@ -33,10 +33,10 @@ class CarInventoryDetail extends Equatable {
   final String? interiorColor;
   final String? exteriorColor;
   final String? engineType;
-  final double? gradeScore;
-  final int? installment;
+  final num? gradeScore;
+  final num? installment;
   final bool? depositReceived;
-  final int? loanValue;
+  final num? loanValue;
   final String? websiteUrl;
   final bool? sold;
   final bool? hasThreeDImage;
@@ -138,8 +138,7 @@ class CarInventoryDetail extends Equatable {
         ccMeasurement: json["ccMeasurement"],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "features": features == null ? [] : List<dynamic>.from(features!.map((x) => x)),
         "carFeatures": carFeatures == null ? [] : List<dynamic>.from(carFeatures!.map((x) => x)),
         "modelFeatures": modelFeatures == null ? [] : List<dynamic>.from(modelFeatures!.map((x) => x)),
@@ -457,8 +456,7 @@ class Model extends Equatable {
         popular: json["popular"],
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
         "modelFeatures": modelFeatures == null ? [] : List<dynamic>.from(modelFeatures!.map((x) => x)),
         "id": id,
         "name": name,

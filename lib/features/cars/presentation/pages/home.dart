@@ -1,6 +1,7 @@
 import 'package:autochek_assessment/features/cars/data/bloc/car_cubit.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/car_make_item.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/car_makes_loader.dart';
+import 'package:autochek_assessment/features/cars/presentation/widgets/error_widget.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/inventory_item.dart';
 import 'package:autochek_assessment/utils/app_colors.dart';
 import 'package:autochek_assessment/utils/utilities.dart';
@@ -37,7 +38,7 @@ class _HomeState extends State<Home> {
               leading: const Row(
                 children: [
                   SizedBox(
-                    width: 10,
+                    width: 20,
                   ),
                   Icon(Icons.apps),
                   SizedBox(
@@ -149,24 +150,11 @@ class _HomeState extends State<Home> {
                       );
                     }
                     if (state is FetchCarMakesError) {
-                      return Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(child: Text(state.error)),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            MaterialButton(
-                              onPressed: () {
-                                carCubit.fetchCarPopularMakes();
-                              },
-                              child: const Text('Retry'),
-                            )
-                          ],
-                        ),
+                      return ErrorState(
+                        errorMessage: state.error,
+                        retry: () {
+                          carCubit.fetchCarPopularMakes();
+                        },
                       );
                     }
                     return const SizedBox.shrink();
@@ -205,24 +193,11 @@ class _HomeState extends State<Home> {
               );
             }
             if (state is FetchCarInventoryError) {
-              return Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(state.error),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    MaterialButton(
-                      onPressed: () {
-                        carCubit.fetchCarInventory();
-                      },
-                      child: const Text('Retry'),
-                    )
-                  ],
-                ),
-              );
+              return ErrorState(
+                  errorMessage: state.error,
+                  retry: () {
+                    carCubit.fetchCarInventory();
+                  });
             }
             return const SizedBox.shrink();
           },
