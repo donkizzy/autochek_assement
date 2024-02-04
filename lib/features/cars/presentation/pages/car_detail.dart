@@ -99,16 +99,19 @@ class _CarDetailPageState extends State<CarDetailPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  MaterialButton(
-                    color: codGray,
-                    elevation: 0.0,
-                    onPressed: () {},
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    minWidth: width(context),
-                    child: Text(
-                      'Add to Cart',
-                      style: TextStyle(color: goldenRodYellow, fontWeight: FontWeight.w700),
+                  Hero(
+                    tag: widget.carId,
+                    child: MaterialButton(
+                      color: codGray,
+                      elevation: 0.0,
+                      onPressed: () {},
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      minWidth: width(context),
+                      child: Text(
+                        'Add to Cart',
+                        style: TextStyle(color: goldenRodYellow, fontWeight: FontWeight.w700),
+                      ),
                     ),
                   )
                 ],

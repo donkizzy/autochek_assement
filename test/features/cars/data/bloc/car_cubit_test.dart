@@ -36,8 +36,7 @@ void main() {
       'fetchCarPopularMakes emits [FetchCarMakesLoading, FetchCarMakesSuccess] when successful',
       build: () => carCubit,
       setUp: () {
-        when(mockCarRepository.fetchCarPopularMakes())
-            .thenAnswer((_) async => Right(CarMakes.fromJson(carMake)));
+        when(mockCarRepository.fetchCarPopularMakes()).thenAnswer((_) async => Right(CarMakes.fromJson(carMake)));
       },
       act: (cubit) => cubit.fetchCarPopularMakes(),
       expect: () => <CarState>[
@@ -50,8 +49,7 @@ void main() {
       'fetchCarPopularMakes emits [FetchCarMakesLoading, FetchCarMakesError] when fails',
       build: () => carCubit,
       setUp: () {
-        when(mockCarRepository.fetchCarPopularMakes())
-            .thenAnswer((_) async => const Left('Error message'));
+        when(mockCarRepository.fetchCarPopularMakes()).thenAnswer((_) async => const Left('Error message'));
       },
       act: (cubit) => cubit.fetchCarPopularMakes(),
       expect: () => <CarState>[
@@ -79,8 +77,7 @@ void main() {
       'fetchCarInventory emits [FetchCarInventoryLoading, FetchCarInventoryError] when fails',
       build: () => carCubit,
       setUp: () {
-        when(mockCarRepository.fetchCarInventory())
-            .thenAnswer((_) async => const Left('Error message'));
+        when(mockCarRepository.fetchCarInventory()).thenAnswer((_) async => const Left('Error message'));
       },
       act: (cubit) => cubit.fetchCarInventory(),
       expect: () => <CarState>[
@@ -139,8 +136,7 @@ void main() {
       'fetchCarMedia emits [FetchCarMediaLoading, FetchCarInventoryDetailsError] when fails',
       build: () => carCubit,
       setUp: () {
-        when(mockCarRepository.fetchCarMedia(carId: 'M8JMxVUxJ'))
-            .thenAnswer((_) async => const Left('Error message'));
+        when(mockCarRepository.fetchCarMedia(carId: 'M8JMxVUxJ')).thenAnswer((_) async => const Left('Error message'));
       },
       act: (cubit) => cubit.fetchCarMedia(carId: 'M8JMxVUxJ'),
       expect: () => <CarState>[

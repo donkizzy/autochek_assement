@@ -290,7 +290,7 @@ class LoanCalculator extends Equatable {
   });
 
   factory LoanCalculator.fromJson(Map<String, dynamic> json) => LoanCalculator(
-    loanPercentage: json["loanPercentage"]?.toDouble(),
+        loanPercentage: json["loanPercentage"]?.toDouble(),
         ranges: json["ranges"] == null ? null : Ranges.fromJson(json["ranges"]),
         defaultValues: json["defaultValues"] == null ? null : DefaultValues.fromJson(json["defaultValues"]),
       );

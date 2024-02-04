@@ -3,6 +3,7 @@ import 'package:autochek_assessment/features/cars/presentation/widgets/car_make_
 import 'package:autochek_assessment/features/cars/presentation/widgets/car_makes_loader.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/error_widget.dart';
 import 'package:autochek_assessment/features/cars/presentation/widgets/inventory_item.dart';
+import 'package:autochek_assessment/features/cars/presentation/widgets/lazy_load_scroll_view.dart';
 import 'package:autochek_assessment/utils/app_colors.dart';
 import 'package:autochek_assessment/utils/utilities.dart';
 import 'package:flutter/material.dart';
@@ -176,20 +177,25 @@ class _HomeState extends State<Home> {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is FetchCarInventorySuccess) {
-              return ListView.separated(
-                shrinkWrap: true,
-                itemCount: state.carInventory.result?.length ?? 0,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return InventoryItem(
-                    carInventory: state.carInventory.result?[index],
-                  );
+              return LazyLoadScrollView(
+                onEndOfPage: () {
+                  carCubit.fetchCarInventory();
                 },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const SizedBox(
-                    height: 20,
-                  );
-                },
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemCount: state.carInventory.result?.length ?? 0,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return InventoryItem(
+                      carInventory: state.carInventory.result?[index],
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                      height: 20,
+                    );
+                  },
+                ),
               );
             }
             if (state is FetchCarInventoryError) {

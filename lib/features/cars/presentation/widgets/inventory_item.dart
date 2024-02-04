@@ -18,7 +18,7 @@ class InventoryItem extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => CarDetailPage(
-                      carId: carInventory?.id ?? '',
+                      carId: carInventory?.id ?? 'carDetail',
                     )));
       },
       child: Container(
@@ -92,20 +92,23 @@ class InventoryItem extends StatelessWidget {
               ),
               Positioned(
                 top: 0,
-                child: Container(
-                  height: 250,
-                  width: width(context) - 80,
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: snuffPurple,
-                      border: Border.all(color: appWhite, width: 2),
-                      borderRadius: const BorderRadius.all(Radius.circular(15))),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: CachedNetworkImage(
-                      imageUrl: carInventory?.imageUrl ?? '',
-                      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                child: Hero(
+                  tag: carInventory?.id ?? 'carDetail',
+                  child: Container(
+                    height: 250,
+                    width: width(context) - 80,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                        color: snuffPurple,
+                        border: Border.all(color: appWhite, width: 2),
+                        borderRadius: const BorderRadius.all(Radius.circular(15))),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: CachedNetworkImage(
+                        imageUrl: carInventory?.imageUrl ?? '',
+                        placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
+                      ),
                     ),
                   ),
                 ),
