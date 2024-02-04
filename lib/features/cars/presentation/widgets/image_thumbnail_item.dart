@@ -15,13 +15,9 @@ class ImageThumbNaiItem extends StatelessWidget {
       onTap: () {
         onChanged(index);
       },
-      child: DecoratedBox(
+      child: Container(
         decoration: BoxDecoration(
-            color: snuffPurple,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: codGray,
-            )),
+            color: snuffPurple, borderRadius: BorderRadius.circular(10), border: Border.all(color: codGray, width: 1)),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: CachedNetworkImage(

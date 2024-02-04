@@ -40,7 +40,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
             decoration: BoxDecoration(
                 color: appWhite,
                 borderRadius: const BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-            height: 170,
+            height: 180,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -59,9 +59,11 @@ class _CarDetailPageState extends State<CarDetailPage> {
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  Text(
-                                    '${value.city} ${value.state}',
-                                    style: const TextStyle(fontWeight: FontWeight.w600),
+                                  Expanded(
+                                    child: Text(
+                                      '${value.city} ${value.state}',
+                                      style: const TextStyle(fontWeight: FontWeight.w600),
+                                    ),
                                   ),
                                 ],
                               ),
