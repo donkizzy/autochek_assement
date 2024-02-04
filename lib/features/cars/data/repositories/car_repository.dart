@@ -3,6 +3,7 @@ import 'package:autochek_assessment/features/cars/data/models/car_inventory_deta
 import 'package:autochek_assessment/features/cars/data/models/car_make.dart';
 import 'package:autochek_assessment/features/cars/data/models/car_media.dart';
 import 'package:autochek_assessment/utils/api_config.dart';
+import 'package:autochek_assessment/utils/api_error.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -10,8 +11,8 @@ class CarRepository {
   CarRepository({required this.dio})
       : _dio = Dio(
           BaseOptions(
-            connectTimeout: const Duration(seconds: 3),
-            receiveTimeout: const Duration(seconds: 3),
+            connectTimeout: const Duration(minutes: 3),
+            receiveTimeout: const Duration(minutes: 3),
           ),
         );
 
@@ -33,7 +34,7 @@ class CarRepository {
         return Left(response.statusMessage ?? 'Error');
       }
     } on DioException catch (e) {
-      return Left(e.toString());
+      return Left(ApiError.fromDio(e).errorDescription);
     }
   }
 
@@ -51,7 +52,7 @@ class CarRepository {
         return Left(response.statusMessage ?? 'Error');
       }
     } on DioException catch (e) {
-      return Left(e.toString());
+      return Left(ApiError.fromDio(e).errorDescription);
     }
   }
 
@@ -69,7 +70,7 @@ class CarRepository {
         return Left(response.statusMessage ?? 'Error');
       }
     } on DioException catch (e) {
-      return Left(e.toString());
+      return Left(ApiError.fromDio(e).errorDescription);
     }
   }
 
@@ -87,7 +88,7 @@ class CarRepository {
         return Left(response.statusMessage ?? 'Error');
       }
     } on DioException catch (e) {
-      return Left(e.toString());
+      return Left(ApiError.fromDio(e).errorDescription);
     }
   }
 }
