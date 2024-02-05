@@ -27,7 +27,6 @@ class _CarDetailPageState extends State<CarDetailPage> {
 
   @override
   void initState() {
-    // carCubit.fetchCarInventoryDetail(carId: 'R1nVTV4Mj');
     carCubit.fetchCarInventoryDetail(carId: widget.carId);
     super.initState();
   }
@@ -176,7 +175,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                   height: 20,
                 ),
                 Container(
-                  height: 740,
+                  height: 760,
                   decoration: BoxDecoration(color: alabasterGrey),
                   child: Align(
                     alignment: Alignment.bottomCenter,
@@ -187,7 +186,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
                           bottom: 0,
                           child: Container(
                             height: 600,
-                            margin: const EdgeInsets.symmetric(horizontal: 15),
+                            margin: const EdgeInsets.only(left: 15, right: 15, bottom: 20),
                             width: width(context) - 40,
                             decoration: BoxDecoration(
                                 color: appWhite, borderRadius: const BorderRadius.all(Radius.circular(20))),
@@ -347,11 +346,13 @@ class _CarDetailPageState extends State<CarDetailPage> {
             );
           }
           if (state is FetchCarInventoryDetailsError) {
-            return ErrorState(
-              errorMessage: state.error,
-              retry: () {
-                carCubit.fetchCarPopularMakes();
-              },
+            return Center(
+              child: ErrorState(
+                errorMessage: state.error,
+                retry: () {
+                  carCubit.fetchCarPopularMakes();
+                },
+              ),
             );
           }
           return const SizedBox.shrink();
@@ -359,7 +360,7 @@ class _CarDetailPageState extends State<CarDetailPage> {
         listener: (BuildContext context, CarState state) {
           if (state is FetchCarInventoryDetailsSuccess) {
             carInventoryDetail.value = state.carInventoryDetail;
-            carCubit.fetchCarMedia(carId: 'R1nVTV4Mj');
+            carCubit.fetchCarMedia(carId: widget.carId);
             selectedImageUrl.value = state.carInventoryDetail.imageUrl ?? '';
           }
         },

@@ -34,7 +34,7 @@ class CarMakeItem extends StatelessWidget {
         ),
         Text(
           makeList?.name ?? 'N/A',
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
         )
       ],
     );

@@ -55,7 +55,7 @@ class InventoryItem extends StatelessWidget {
                                 const SizedBox(
                                   width: 3,
                                 ),
-                                Text('${carInventory?.gradeScore?.toStringAsFixed(1) ?? 0}',
+                                Text('(${carInventory?.gradeScore?.toStringAsFixed(1) ?? 0})',
                                     style: TextStyle(color: frenchGray, fontWeight: FontWeight.w500, fontSize: 12)),
                               ],
                             ),
@@ -83,7 +83,7 @@ class InventoryItem extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 15,
                         )
                       ],
                     ),
