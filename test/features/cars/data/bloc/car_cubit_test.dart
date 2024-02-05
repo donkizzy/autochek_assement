@@ -27,8 +27,7 @@ void main() {
     carCubit.close();
   });
   test('initial state is correct', () {
-    final cubit = CarCubit(carRepository: mockCarRepository);
-    expect(cubit.state, CarInitial());
+    expect(carCubit.state, CarInitial());
   });
 
   group('fetchCarPopularMakes', () {
@@ -57,6 +56,18 @@ void main() {
         const FetchCarMakesError(error: 'Error message'),
       ],
     );
+    blocTest<CarCubit, CarState>(
+      'fetchCarPopularMakes emits [FetchCarMakesLoading, FetchCarMakesError] when it throws an exception',
+      build: () => carCubit,
+      setUp: () {
+        when(mockCarRepository.fetchCarPopularMakes()).thenThrow(Exception('Failed fetch car'));
+      },
+      act: (cubit) => cubit.fetchCarPopularMakes(),
+      expect: () => <CarState>[
+        FetchCarMakesLoading(),
+        FetchCarMakesError(error: Exception('Failed fetch car').toString()),
+      ],
+    );
   });
 
   group('fetchCarInventory', () {
@@ -83,6 +94,18 @@ void main() {
       expect: () => <CarState>[
         FetchCarInventoryLoading(),
         const FetchCarInventoryError(error: 'Error message'),
+      ],
+    );
+    blocTest<CarCubit, CarState>(
+      'fetchCarInventory emits [FetchCarInventoryLoading, FetchCarInventoryError] when it throws an exception',
+      build: () => carCubit,
+      setUp: () {
+        when(mockCarRepository.fetchCarInventory()).thenThrow(Exception('Failed fetch inventory'));
+      },
+      act: (cubit) => cubit.fetchCarInventory(),
+      expect: () => <CarState>[
+        FetchCarInventoryLoading(),
+        FetchCarInventoryError(error: Exception('Failed fetch inventory').toString()),
       ],
     );
   });
@@ -115,6 +138,19 @@ void main() {
         const FetchCarInventoryDetailsError(error: 'Error message'),
       ],
     );
+    blocTest<CarCubit, CarState>(
+      'fetchCarInventoryDetail emits [FetchCarInventoryDetailsLoading, FetchCarInventoryDetailsError] when it throws an exception',
+      build: () => carCubit,
+      setUp: () {
+        when(mockCarRepository.fetchCarInventoryDetail(carId: 'M8JMxVUxJ'))
+            .thenThrow(Exception('Failed fetch car detail'));
+      },
+      act: (cubit) => cubit.fetchCarInventoryDetail(carId: 'M8JMxVUxJ'),
+      expect: () => <CarState>[
+        FetchCarInventoryDetailsLoading(),
+        FetchCarInventoryDetailsError(error: Exception('Failed fetch car detail').toString()),
+      ],
+    );
   });
 
   group('fetchCarMedia', () {
@@ -142,6 +178,19 @@ void main() {
       expect: () => <CarState>[
         FetchCarMediaLoading(),
         const FetchCarMediaError(error: 'Error message'),
+      ],
+    );
+
+    blocTest<CarCubit, CarState>(
+      'fetchCarMedia emits [FetchCarMediaLoading, FetchCarInventoryDetailsError] when it throws an exception',
+      build: () => carCubit,
+      setUp: () {
+        when(mockCarRepository.fetchCarMedia(carId: 'M8JMxVUxJ')).thenThrow(Exception('Failed fetch car media'));
+      },
+      act: (cubit) => cubit..fetchCarMedia(carId: 'M8JMxVUxJ'),
+      expect: () => <CarState>[
+        FetchCarMediaLoading(),
+        FetchCarMediaError(error: Exception('Failed fetch car media').toString()),
       ],
     );
   });

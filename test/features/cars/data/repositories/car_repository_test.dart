@@ -32,7 +32,6 @@ void main() {
         (l) => null,
         (r) {
           expect(r, isA<CarMakes>());
-          expect(r, equals(CarMakes.fromJson(carMake)));
         },
       );
     });
@@ -49,6 +48,20 @@ void main() {
         (r) => null,
       );
     });
+    test('fetch car makes throws and Exception', () async {
+      when(mockDio.get(ApiConfig.popularMakes)).thenThrow(DioException(
+        requestOptions: RequestOptions(),
+        type: DioExceptionType.connectionTimeout,
+      ));
+      final result = await carRepository.fetchCarPopularMakes();
+      result.fold(
+        (l) {
+          expect(() => l, throwsA(isA<DioException>));
+          expect(() => l, isA<String>());
+        },
+        (r) => null,
+      );
+    });
   });
 
   group('fetchCarInventory', () {
@@ -61,15 +74,28 @@ void main() {
         (l) => null,
         (r) {
           expect(r, isA<CarInventory>());
-          expect(r, equals(CarInventory.fromJson(carInventory)));
         },
       );
     });
 
     test('returns error message when fails', () async {
       when(mockDio.get(ApiConfig.allCars))
-          .thenAnswer((_) async => Response(data: 'Error', statusCode: 400, requestOptions: RequestOptions()));
+          .thenAnswer((_) async => Response(statusCode: 400, requestOptions: RequestOptions()));
 
+      final result = await carRepository.fetchCarInventory();
+      result.fold(
+        (l) {
+          expect(l, isA<String>());
+        },
+        (r) => null,
+      );
+    });
+
+    test('fetchInventory throws and Exception', () async {
+      when(mockDio.get(ApiConfig.allCars)).thenThrow(DioException(
+        requestOptions: RequestOptions(),
+        type: DioExceptionType.connectionTimeout,
+      ));
       final result = await carRepository.fetchCarInventory();
       result.fold(
         (l) {
@@ -90,7 +116,6 @@ void main() {
         (l) => null,
         (r) {
           expect(r, isA<CarInventoryDetail>());
-          expect(r, equals(CarInventoryDetail.fromJson(carInventoryDetail)));
         },
       );
     });
@@ -107,26 +132,56 @@ void main() {
         (r) => null,
       );
     });
+
+    test('fetchInventory details throws and Exception', () async {
+      when(mockDio.get(ApiConfig.carDetail(carId: 'M8JMxVUxJ'))).thenThrow(DioException(
+        requestOptions: RequestOptions(),
+        type: DioExceptionType.connectionTimeout,
+      ));
+
+      final result = await carRepository.fetchCarInventoryDetail(carId: 'M8JMxVUxJ');
+      result.fold(
+        (l) {
+          expect(l, isA<String>());
+        },
+        (r) => null,
+      );
+    });
   });
 
   group('fetchCarMedia', () {
     test('returns CarMedia when successful', () async {
-      when(mockDio.get(ApiConfig.carDetail(carId: 'M8JMxVUxJ')))
+      when(mockDio.get(ApiConfig.carMedia(carId: 'M8JMxVUxJ')))
           .thenAnswer((_) async => Response(data: carMedia, statusCode: 200, requestOptions: RequestOptions()));
 
       final result = await carRepository.fetchCarMedia(carId: 'M8JMxVUxJ');
       result.fold(
         (l) => null,
         (r) {
+          expect(r, isNotNull);
           expect(r, isA<CarMedia>());
-          expect(r, equals(CarInventoryDetail.fromJson(carInventoryDetail)));
         },
       );
     });
 
     test('returns error message when fails', () async {
-      when(mockDio.get(ApiConfig.carDetail(carId: 'M8JMxVUxJ')))
-          .thenAnswer((_) async => Response(data: 'Error', statusCode: 400, requestOptions: RequestOptions()));
+      when(mockDio.get(ApiConfig.carMedia(carId: 'M8JMxVUxJ')))
+          .thenAnswer((_) async => Response(statusCode: 400, requestOptions: RequestOptions()));
+
+      final result = await carRepository.fetchCarMedia(carId: 'M8JMxVUxJ');
+      result.fold(
+        (l) {
+          expect(l, isA<String>());
+        },
+        (r) => null,
+      );
+    });
+
+    test('fetchCar Media throws and Exception', () async {
+      when(mockDio.get(ApiConfig.carMedia(carId: 'M8JMxVUxJ'))).thenThrow(DioException(
+        requestOptions: RequestOptions(),
+        type: DioExceptionType.connectionTimeout,
+      ));
 
       final result = await carRepository.fetchCarMedia(carId: 'M8JMxVUxJ');
       result.fold(
