@@ -17,6 +17,7 @@ class _BottomNavState extends State<BottomNav> {
     SizedBox(),
     SizedBox(),
     SizedBox(),
+    SizedBox(),
   ];
 
   @override
