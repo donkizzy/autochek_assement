@@ -45,9 +45,15 @@ class InventoryItem extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              carInventory?.title ?? 'N/A',
-                              style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 16),
+                            Expanded(
+                              child: Text(
+                                carInventory?.title ?? 'N/A',
+                                style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 16,
+                                    overflow: TextOverflow.ellipsis),
+                              ),
                             ),
                             Row(
                               children: [
