@@ -12,13 +12,31 @@ class CarMakeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String url = makeList?.imageUrl ?? '';
-    return CircleAvatar(
-        radius: 35,
-        backgroundColor: appWhite,
-        backgroundImage: url.endsWith('.svg')
-            ? Svg(url, source: SvgSource.network, size: const Size(20, 20)) as ImageProvider
-            : CachedNetworkImageProvider(
-                url,
-              ));
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 35,
+          backgroundColor: snuffPurple,
+          child: url.endsWith('.svg')
+              ? Image(
+                  width: 32,
+                  height: 32,
+                  image: Svg(url, source: SvgSource.network, size: const Size(20, 20)),
+                )
+              : CachedNetworkImage(
+                  width: 32,
+                  height: 32,
+                  imageUrl: url,
+                ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Text(
+          makeList?.name ?? 'N/A',
+          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700),
+        )
+      ],
+    );
   }
 }

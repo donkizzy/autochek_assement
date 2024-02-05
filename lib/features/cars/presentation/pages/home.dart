@@ -28,12 +28,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: alabasterGrey.withOpacity(0.5),
+      backgroundColor: alabasterGrey,
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              backgroundColor: alabasterGrey.withOpacity(0.5),
+              backgroundColor: alabasterGrey,
               iconTheme: const IconThemeData(color: Colors.black),
               leading: const Row(
                 children: [
@@ -65,12 +65,16 @@ class _HomeState extends State<Home> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
                 child: Row(
                   children: [
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
+                          hintText: 'Search',
+                          filled: true,
+                          fillColor: snuffPurple.withOpacity(0.5),
+                          prefixIcon: const Icon(Icons.search),
                           contentPadding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
                           border: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -119,7 +123,7 @@ class _HomeState extends State<Home> {
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 100,
+                height: 120,
                 child: BlocBuilder<CarCubit, CarState>(
                   bloc: carCubit,
                   buildWhen: (previousState, currentState) {
@@ -133,7 +137,7 @@ class _HomeState extends State<Home> {
                     }
                     if (state is FetchCarMakesSuccess) {
                       return ListView.separated(
-                        padding: const EdgeInsets.only(left: 20.0),
+                        padding: const EdgeInsets.only(left: 20.0, bottom: 0),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: state.carMakes.makeList?.length ?? 0,
@@ -178,6 +182,7 @@ class _HomeState extends State<Home> {
             if (state is FetchCarInventorySuccess) {
               return ListView.separated(
                 shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 20),
                 itemCount: state.carInventory.result?.length ?? 0,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext context, int index) {
